@@ -35,7 +35,7 @@ main = async () => {
           export_format: "markdown"
         })
           .then(doc => { 
-            console.info("Doc " + id + " " + doc.title, doc)
+            /// console.info("Doc " + id + " " + doc.title, doc)
             return Promise.resolve(doc);
           })
           .catch(err => {
@@ -62,16 +62,16 @@ main = async () => {
   const db = new sqlite3.Database(process.env.NOTE_DB);
   db.serialize(() => {
     db.each("select * from note", async (err, row) => {
-      if (row._id >= 0 && existing[row._id] === undefined) {
+      if (false && row._id >= 0 && true) { // existing[row._id] === undefined) {
         await dbx.paperDocsCreate({
           contents: "[" + row._id + "] " + moment(row.modified_date).format("YYYY-MM-DD") + " " + row.snippet,
           import_format: "plain_text",
           parent_folder_id: process.env.FOLDER_ID
         }).then(r => {
-          console.info("Created " + row._id);
+          console.info("Created " + row._id, r);
         }).catch(err => {
-          /// FFS gives 500 Internal Server Error but still creates a note?
-          console.warn("Failed to create " + row._id);
+          /// Gives 500 Internal Server Error but still creates a note?
+          console.warn("Failed to create " + row._id, JSON.stringify(err));
         })
       } else {
         console.info("Skipping creating " + row._id);

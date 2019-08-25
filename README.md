@@ -16,13 +16,13 @@ Run script multiple times to upload not yet uploaded documents.
 ## Bad experience with Dropbox Paper API
 
 - API slow
-- No way to filter by parent_folder_id
+- No way to filter by parent_folder_id when downloading/getting docs
 - No ID of document?!
-- On creating document, API throws 500 Internal Server Error but still creates doc?!
+- On creating document, API sometimes throws 500 Internal Server Error but still creates doc
 - No declaration of API limits (requests/second)
-- No way to set doc metadata
-- No way to set title but somehow it is inferred?
-- Downloading slow, list fetching slow
+- No way to set doc metadata (id, etc, custom)
+- No way to set title but somehow it is automatically generated?
+- Downloading slow, list fetching (pagination) slow
 - After deleting docs from UI they are still available on API
 
 ## Bad experience with Dropbox Paper UI
